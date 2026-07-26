@@ -1,0 +1,59 @@
+# SnapTool
+
+> SnapTool is a free online developer tools platform with 32+ tools and a REST API. All tools run 100% client-side in the browser for privacy. The API allows programmatic access for AI agents and automation.
+
+## API Access
+
+Base URL: https://www.snaptools.uk/api/tools
+Authentication: `x-api-key` header (get key at https://www.snaptools.uk/pricing)
+Method: GET or POST
+Rate limit: 10,000 calls/month on API plan ($9/mo)
+
+## Available API Tools
+
+- `json-format` — Format/beautify JSON
+- `json-minify` — Minify JSON
+- `base64-encode` — Encode text to Base64
+- `base64-decode` — Decode Base64 to text
+- `url-encode` — URL encode text
+- `url-decode` — URL decode text
+- `hash-sha256` — Generate SHA-256 hash
+- `hash-sha512` — Generate SHA-512 hash
+- `uuid` — Generate UUIDs (params: count=1-100)
+- `slug` — Generate URL slug from text
+- `case-upper` — Convert to UPPERCASE
+- `case-lower` — Convert to lowercase
+- `case-camel` — Convert to camelCase
+- `reverse` — Reverse a string
+- `word-count` — Count words/characters/lines
+
+## Request Examples
+
+GET:
+```
+curl -H "x-api-key: sk-KEY" "https://www.snaptools.uk/api/tools?tool=base64-encode&input=Hello"
+```
+
+POST:
+```
+curl -X POST https://www.snaptools.uk/api/tools \
+  -H "x-api-key: sk-KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tool":"json-format","input":"{\"key\":\"value\"}"}'
+```
+
+## Response Format
+
+Success: `{"tool":"base64-encode","input":"Hello","result":"SGVsbG8="}`
+Error: `{"error":"Invalid or missing API key"}`
+
+## Web Tools (Browser)
+
+32 free tools at https://www.snaptools.uk including JSON formatter, Base64, color converter, regex tester, UUID generator, password generator, JWT decoder, hash generator, markdown preview, and more.
+
+## Links
+
+- Website: https://www.snaptools.uk
+- Pricing: https://www.snaptools.uk/pricing
+- API Docs: https://www.snaptools.uk/docs/api
+- Sitemap: https://www.snaptools.uk/sitemap.xml

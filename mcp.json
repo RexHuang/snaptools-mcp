@@ -1,0 +1,77 @@
+{
+  "name": "snaptool",
+  "description": "SnapTool - Free online developer tools API. 15 tools: JSON format/minify, Base64 encode/decode, URL encode/decode, SHA-256/512 hash, UUID generator, slug, case conversion, reverse, word count.",
+  "url": "https://www.snaptools.uk/api/tools",
+  "tools": [
+    {
+      "name": "json_format",
+      "description": "Format and beautify JSON string",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "JSON string to format" } }, "required": ["input"] } }
+    },
+    {
+      "name": "json_minify",
+      "description": "Minify JSON string to one line",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "JSON string to minify" } }, "required": ["input"] } }
+    },
+    {
+      "name": "base64_encode",
+      "description": "Encode text to Base64",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to encode" } }, "required": ["input"] } }
+    },
+    {
+      "name": "base64_decode",
+      "description": "Decode Base64 to plain text",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Base64 string to decode" } }, "required": ["input"] } }
+    },
+    {
+      "name": "hash_sha256",
+      "description": "Generate SHA-256 hash of text",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to hash" } }, "required": ["input"] } }
+    },
+    {
+      "name": "hash_sha512",
+      "description": "Generate SHA-512 hash of text",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to hash" } }, "required": ["input"] } }
+    },
+    {
+      "name": "uuid_generate",
+      "description": "Generate one or more UUIDs",
+      "inputSchema": { "type": "object", "properties": { "count": { "type": "integer", "description": "Number of UUIDs (1-100)" } }, "required": ["count"] } }
+    },
+    {
+      "name": "slug_generate",
+      "description": "Convert text to URL-friendly slug",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to convert" } }, "required": ["input"] } }
+    },
+    {
+      "name": "url_encode",
+      "description": "URL-encode text",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to encode" } }, "required": ["input"] } }
+    },
+    {
+      "name": "url_decode",
+      "description": "URL-decode text",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Encoded text" } }, "required": ["input"] } }
+    },
+    {
+      "name": "case_upper",
+      "description": "Convert text to UPPERCASE",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to convert" } }, "required": ["input"] } }
+    },
+    {
+      "name": "case_lower",
+      "description": "Convert text to lowercase",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to convert" } }, "required": ["input"] } }
+    },
+    {
+      "name": "reverse",
+      "description": "Reverse a string",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to reverse" } }, "required": ["input"] } }
+    },
+    {
+      "name": "word_count",
+      "description": "Count words, characters, and lines in text",
+      "inputSchema": { "type": "object", "properties": { "input": { "type": "string", "description": "Text to analyze" } }, "required": ["input"] } }
+    }
+  ]
+}
