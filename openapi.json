@@ -1,0 +1,91 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "SnapTool API",
+    "description": "Programmatic access to 15+ developer tools. JSON formatting, Base64 encoding, hashing, UUID generation, and more.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://www.snaptools.uk/pricing"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    { "url": "https://www.snaptools.uk" }
+  ],
+  "security": [
+    { "apiKey": [] }
+    ],
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Get your API key at https://www.snaptools.uk/pricing"
+      }
+    },
+    "schemas": {
+      "ToolRequest": {
+        "type": "object",
+        "required": ["tool", "input"],
+        "properties": {
+          "tool": {
+            "type": "string",
+            "enum": ["json-format","json-minify","base64-encode","base64-decode","url-encode","url-decode","hash-sha256","hash-sha512","uuid","slug","case-upper","case-lower","case-camel","reverse","word-count"]
+          },
+          "input": { "type": "string", "description": "Text to process" },
+          "count": { "type": "integer", "description": "Number of results (for uuid: 1-100)", "minimum": 1, "maximum": 100 }
+        }
+      },
+      "ToolResponse": {
+        "type": "object",
+        "properties": {
+          "tool": { "type": "string" },
+          "input": { "type": "string" },
+          "result": { "type": "string" }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/tools": {
+      "get": {
+        "summary": "Process text with a tool",
+        "description": "Send a tool name and input text, get processed result.",
+        "security": [{ "apiKey": [] }],
+        "parameters": [
+          { "name": "tool", "in": "query", "required": true, "schema": { "$ref": "#/components/schemas/ToolRequest/properties/tool" } },
+          { "name": "input", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "count", "in": "query", "required": false, "schema": { "type": "integer", "minimum": 1, "maximum": 100 } }
+        ],
+        "responses": {
+          "200": { "description": "Success", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ToolResponse" } } } },
+          "401": { "description": "Unauthorized", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+          "400": { "description": "Bad request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      },
+      "post": {
+        "summary": "Process text with a tool (POST)",
+        "description": "Send a tool name and input text as JSON body. Use for long inputs.",
+        "security": [{ "apiKey": [] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ToolRequest" } } }
+        },
+        "responses": {
+          "200": { "description": "Success", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ToolResponse" } } } },
+          "401": { "description": "Unauthorized", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+          "400": { "description": "Bad request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
+    }
+  }
+}
